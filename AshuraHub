@@ -1,0 +1,255 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Ashura Hub By Andrix", HidePremium = false, IntroText = "Enjoy",SaveConfig = true, ConfigFolder = "OrionTest"})
+ 
+OrionLib:MakeNotification({
+	Name = "Ashura Hub ",
+	Content = "ElktrayAndrix Ashura",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
+
+OrionLib:MakeNotification({
+	Name = "AshuraHub",
+	Content = "Enjoy",
+	Image = "rbxassetid://4483345998",
+	Time = 4
+})
+ 
+local MainTab = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+}) 
+
+local AnimationsTab = Window:MakeTab({
+	Name = "Animations",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+}) 
+ 
+local OthersTab = Window:MakeTab({
+	Name = "Others",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+ local CreditsTab = Window:MakeTab({
+	Name = "Credits",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+MainTab:AddLabel(" Stuff")
+AnimationsTab:AddLabel("Animations")
+ CreditsTab:AddLabel("Credits")
+ OthersTab:AddLabel("Scripts") 
+ 
+OrionLib:MakeNotification({
+	Name = "Subscribe",
+	Content = "Made By Andrix",
+	Image = "rbxassetid://4483345998",
+	Time = 4
+})
+ 
+ 
+ 
+ 
+ 
+MainTab:AddButton({
+	Name = "Hitbox By Jnhh gaming",
+	Callback = function()
+       _G.HeadSize = 50
+_G.Disabled = true
+
+game:GetService('RunService').RenderStepped:connect(function()
+if _G.Disabled then
+for i,v in next, game:GetService('Players'):GetPlayers() do
+if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+pcall(function()
+v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize,_G.HeadSize,_G.HeadSize)
+v.Character.HumanoidRootPart.Transparency = 0.7
+v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really black")
+v.Character.HumanoidRootPart.Material = "Neon"
+v.Character.HumanoidRootPart.CanCollide = false
+end)
+end
+end
+end
+end)
+      		print("button pressed")
+  	end    
+})
+ 
+MainTab:AddButton({
+	Name = "Infinite Jump",
+	Callback = function()
+local InfiniteJumpEnabled = true
+game:GetService("UserInputService").JumpRequest:connect(function()
+	if InfiniteJumpEnabled then
+		game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+	end
+end)
+      		print("button pressed")
+  	end    
+})
+ 
+ 
+ OthersTab:AddButton({
+	Name = "Infinite Yield",
+	Callback = function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+      		print("button pressed")
+  	end    
+})
+
+AnimationsTab:AddButton({
+	Name = "Vampire Animation",
+	Callback = function()
+	local Animate = 
+ game.Players.LocalPlayer.Character.Animate
+ Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=1083445855"
+Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=1083450166"
+Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=1083473930"
+Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=1083462077"
+Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=1083455352"
+Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=1083439238"
+Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=1083443587"
+      		print("button pressed")
+  	end    
+})
+
+OthersTab:AddButton({
+	Name = "AndrixMobile",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/EGJdJJqL"))() 
+      		print("button pressed")
+  	end    
+})
+
+MainTab:AddButton({
+	Name = "NoFall",
+	Callback = function()
+	local NoFallEnabled = false -- this is a boolean variable indicating if NoFall is enabled
+
+    -- Function to toggle NoFall
+    local function toggleNoFall(state)
+        NoFallEnabled = state
+        if NoFallEnabled then
+            task.spawn(function()
+                repeat
+                    if not NoFallEnabled then break end
+                    task.wait(0.4)
+                    game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.GroundHit:FireServer()
+                until not NoFallEnabled
+            end)
+        end
+    end
+
+    toggleNoFall(not NoFallEnabled)
+      		print("button pressed")
+  	end    
+})
+
+MainTab:AddButton({
+	Name = "KillAura",
+	Callback = function()
+	    if state then
+        local player = game:GetService("Players")
+        local lplr = player.LocalPlayer
+        local cam = workspace.CurrentCamera
+        local KnitClient = debug.getupvalue(require(lplr.PlayerScripts.TS.knit).setup, 6)
+        local SwordCont = KnitClient.Controllers.SwordController
+        
+        local aura = false
+        local DistVal = {["Value"] = 85}
+        
+        local connection
+        
+        function Aura()
+            for i,v in pairs(game.Players:GetChildren()) do
+                if v.Character and v.Name ~= game.Players.LocalPlayer.Name and v.Character:FindFirstChild("HumanoidRootPart") then
+                    local mag = (v.Character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+                    if mag <= DistVal["Value"] and v.Team ~= game.Players.LocalPlayer.Team and v.Character:FindFirstChild("Humanoid") then
+                        if v.Character.Humanoid.Health > 0 then
+                            aura = true
+                            SwordCont:swingSwordAtMouse()
+                        end
+                    end
+                end
+            end
+        end
+        
+        connection = game:GetService("RunService").Stepped:connect(function()
+            Aura()
+        end)
+    else
+        if connection then
+            connection:Disconnect()
+        end
+    end
+      		print("button pressed")
+  	end    
+})
+
+AnimationsTab:AddButton({
+	Name = "Bubbly",
+	Callback = function()
+	local Animate = 
+ game.Players.LocalPlayer.Character.Animate
+ Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=910004836"
+Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=910009958"
+Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=910034870"
+Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=910025107"
+Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=910016857"
+Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=910001910"
+Animate.swimidle.SwimIdle.AnimationId = "http://www.roblox.com/asset/?id=910030921"
+Animate.swim.Swim.AnimationId = "http://www.roblox.com/asset/?id=910028158"
+      		print("button pressed")
+  	end
+})
+
+OthersTab:AddButton({
+	Name = "BritishHub(Overpowered) ",
+	Callback = function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/YourLocalNzi/Ye/main/RedCoat8102-obfuscated.lua"))()
+      		print("button pressed")
+  	end    
+})
+
+AnimationsTab:AddButton({
+	Name = "Ninja",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/bwGLPVV7",true))()
+      		print("button pressed")
+  	end    
+})
+
+OthersTab:AddButton({
+	Name = "BedWars Jn",
+	Callback = function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/JNHHGaming/JN-HH-Gaming-Pro/main/JN%20HH%20Gaming%20Pro",true))()
+      		print("button pressed")
+  	end    
+})
+
+AnimationsTab:AddButton({
+	Name = "Zombie",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/t3yTSPRn",true))()
+      		print("button pressed")
+  	end    
+})
+
+OthersTab:AddButton({
+	Name = "Synapse X Remake",
+	Callback = function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/tWGxhNq0"))()
+      		print("button pressed")
+  	end    
+})
+
+
+
+
+
+OrionLib:Init()
